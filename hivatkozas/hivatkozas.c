@@ -1,3 +1,8 @@
+/*
+Fordítás:
+gcc -o hivatkozas -std=c89 hivatkozas.c
+gcc -o hivatkozas -std=c99 hivatkozas.c
+*/
 #include <stdio.h>
 
 int main()
