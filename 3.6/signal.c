@@ -11,7 +11,7 @@ int main()
 {
 	for(;;)
 	{
-		if(signal(SIGINT, jelkezelo) == SIG_IGN)
+		if(signal(SIGINT, jelkezelo) != SIG_IGN)
 		{
 			signal(SIGINT,SIG_IGN);
 		}
