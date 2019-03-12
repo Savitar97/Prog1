@@ -1,3 +1,5 @@
+//g++ -o exor2 exortores2.cpp
+//./exor2 <titkos.txt
 #define MAX_TITKOS 4096
 #define OLVASAS_BUFFER 256
 #define KULCS_MERET 5
