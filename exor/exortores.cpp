@@ -1,3 +1,6 @@
+// g++ -o exor exortores.cpp
+//./exor AAAAA <tiszta> titkos.txt
+
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
