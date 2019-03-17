@@ -2,7 +2,7 @@
 //./exor2 <titkos.txt
 #define MAX_TITKOS 4096
 #define OLVASAS_BUFFER 256
-#define KULCS_MERET 5
+#define KULCS_MERET 6
 #define _GNU_SOURCE
 
 #include <stdio.h>
@@ -76,27 +76,27 @@ main (void)
     (p - titkos + OLVASAS_BUFFER <
      MAX_TITKOS) ? OLVASAS_BUFFER : titkos + MAX_TITKOS - p)))
     p += olvasott_bajtok;
-
+#pragma omp parallel for
   for (int i = 0; i < MAX_TITKOS - (p - titkos); ++i)
     titkos[p - titkos + i] = '\0';
-#pragma omp parallel for private(kulcs)
+
   for (int ii = 'A'; ii <= 'Z'; ++ii)
     for (int ji = 'A'; ji <= 'Z'; ++ji)
       for (int ki = 'A'; ki <= 'Z'; ++ki)
         for (int li = 'A'; li <= 'Z'; ++li)
            for (int mi = 'A'; mi <= 'Z'; ++mi)
-
+              for (int di = 'A'; di <= 'Z'; ++di)
       {
         kulcs[0] = ii;
         kulcs[1] = ji;
         kulcs[2] = ki;
         kulcs[3] = li;
         kulcs[4] = mi;
+        kulcs[5] = di;
         if (exor_tores (kulcs, KULCS_MERET, titkos, p - titkos))
           {
-            printf ("Kulcs: [%c%c%c%c%c]\nTiszta szoveg: [%s]\n",ii, ji, ki, li, mi, titkos);
+            printf ("Kulcs: [%c%c%c%c%c%c]\nTiszta szoveg: [%s]\n",ii, ji, ki, li, mi,di, titkos);
             return 0;
-            
           }
         exor (kulcs, KULCS_MERET, titkos, p - titkos);
       }
