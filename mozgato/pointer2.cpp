@@ -28,6 +28,7 @@ public:
       gyoker = nullptr;
       
       *this = std::move(regi);
+
       
   }
   
@@ -36,7 +37,7 @@ public:
       std::swap(gyoker, regi.gyoker);
 
       return *this;
-      
+      delete gyoker;
 }
 
   void operator<< (char b)
@@ -368,7 +369,12 @@ main (int argc, char *argv[])
   kiFile << "mean = " << binFa.getAtlag () << std::endl;
   kiFile << "var = " << binFa.getSzoras () << std::endl;
   binFa2=std::move(binFa);		
-  kiFile<<'\n';
+  kiFile<<"\n Mozgatás után binFa:"<< std::endl;
+  kiFile << binFa;
+  kiFile << "depth = " << binFa.getMelyseg () << std::endl;
+  kiFile << "mean = " << binFa.getAtlag () << std::endl;
+  kiFile << "var = " << binFa.getSzoras () << std::endl;
+  kiFile  << "\nMozgatás után a binFa2"<< std::endl;
   kiFile<<binFa2;
   kiFile << "depth = " << binFa2.getMelyseg () << std::endl;
   kiFile << "mean = " << binFa2.getAtlag () << std::endl;
