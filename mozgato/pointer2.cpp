@@ -1,3 +1,4 @@
+//gcc pointer2.cpp -o binarytree -lm -lstdc++
 #include <iostream>		
 #include <cmath>		
 #include <fstream>	
