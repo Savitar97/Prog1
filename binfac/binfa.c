@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+
 typedef struct binfa
 {
   int ertek;
@@ -28,10 +30,20 @@ extern void kiir (BINFA_PTR elem);
 extern void szabadit (BINFA_PTR elem);
 
 int
-main (int argc, char **argv)
+main (int argc, char *argv[])
 {
   char b;
+  if (argv[1][0]!='-')
+  	{perror("használat ./binfa -kapcsolo");
+  	return -1;
+}
+  if(argc!=2)
+  {
+  	perror("nincs kapcsolo ./binfa -kapcsolo");
+  	return -2;
+  }
 
+  char kapcsolo=argv[1][1];
   BINFA_PTR gyoker = uj_elem ();
   gyoker->ertek = '/';
   BINFA_PTR fa = gyoker;
@@ -68,13 +80,23 @@ main (int argc, char **argv)
 	    }
 	}
     }
-
-  printf ("Inorder\n");
+switch(kapcsolo)
+{
+	case 'i':printf ("Inorder\n");
   kiir (gyoker);
-  printf ("Preorder\n");
+  break;
+  case 'p':printf ("Preorder\n");
   kiir1 (gyoker);
-  printf ("Postorder\n");
+  break;
+  case 'o':printf ("Postorder\n");
   kiir2 (gyoker);
+  break;
+  default: printf("%s\n","Hibás a kapcsolo.");
+  break;
+}
+  
+  
+  
   extern int max_melyseg;
   printf ("melyseg=%d", max_melyseg);
   szabadit (gyoker);
